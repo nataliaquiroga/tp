@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['starter.services'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,17 +41,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ListsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Bar Palermo', id: 1 },
-    { title: 'Bar Belgrano', id: 2 },
-    { title: 'Restaurant Saavedra', id: 3 },
-    { title: 'Restaurant Microcentro', id: 4 },
-    { title: 'Bar Puerto Madero', id: 5 },
-    { title: 'Bar Nuñez', id: 6 },
-    { title: 'Bar Congreso', id: 7 }
-  ];
+.controller('ListsCtrl', function($scope, Listado) {
+    $scope.playlists = Listado.listados;
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistCtrl', function($scope, $stateParams, Listado) {
+    $scope.playlist = Listado.listados[$stateParams.playlistId-1];
 });
