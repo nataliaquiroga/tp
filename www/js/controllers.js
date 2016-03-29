@@ -45,6 +45,17 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.playlists = Listado.listados;
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, Listado) {
+.controller('FavoritesCtrl', function($scope, Favorites) {
+    $scope.playlists = Favorites.favorites;
+})
+
+.controller('PlaylistCtrl', function($scope, $stateParams, Listado, Favorites) {
     $scope.playlist = Listado.listados[$stateParams.playlistId-1];
+
+    $scope.addFavorite = function(playlist){
+        if (playlist.fav == 0) {
+            Favorites.addFavorite(playlist);
+            playlist.fav = 1;
+        }
+    };
 });

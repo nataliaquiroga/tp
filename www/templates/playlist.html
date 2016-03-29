@@ -1,5 +1,25 @@
-<ion-view view-title="Playlist">
+<ion-view view-title="{{playlist.title}}">
   <ion-content>
     <h1>{{playlist.title}}</h1>
+      <br/>
+    <h2>{{playlist.address}}</h2>
+      <br/>
+      {{playlist.price}}
+      <br/>
+      {{playlist.rating}}
+      <br/>
+      {{playlist.phone}}
+      <br/>
+      Distance
+      <br/><br/>
+      <a class="button button-positive ion-ios7-telephone" ng-href="tel: {{playlist.phone}}">
+          Llamar
+      </a>
+      <br/>
+      <br/>
+      <button class="button button-positive" ng-click="addFavorite(playlist)">
+          Agregar a Favoritos
+      </button>
+
   </ion-content>
 </ion-view>
