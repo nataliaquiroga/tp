@@ -58,13 +58,27 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.playlists = Favorites.favorites;
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams, Listado, Favorites, $cordovaGeolocation) {
+.controller('PlaylistCtrl', function($scope, $stateParams, Listado, Favorites, $cordovaGeolocation, Geoloc) {
+    console.log(Geoloc);
     $scope.playlist = Listado.listados[$stateParams.playlistId-1];
 
     $scope.addFavorite = function(playlist){
         if (playlist.fav == 0) {
             Favorites.addFavorite(playlist);
             playlist.fav = 1;
+            var element = document.getElementById('fav');
+            element.innerHTML = 'Quitar de Favoritos';
+            element.id = 'remove-fav';
+            var elementj = angular.element(element);
+            elementj.addClass('fav');
+        } else {
+            Favorites.removeFavorite(playlist);
+            playlist.fav = 0;
+            var element = document.getElementById('remove-fav');
+            element.innerHTML = 'Agregar a Favoritos';
+            element.id = 'fav';
+            var elementj = angular.element(element);
+            elementj.removeClass('fav');
         }
     };
 
@@ -72,7 +86,12 @@ angular.module('starter.controllers', ['starter.services'])
 
     $cordovaGeolocation.getCurrentPosition(options).then(function(position){
 
-        var latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var mylatLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var latLng = new google.maps.LatLng($scope.playlist.lat, $scope.playlist.lng);
+        dist = google.maps.geometry.spherical.computeDistanceBetween(mylatLng, latLng);
+        km = (dist/1000).toFixed(1);
+        console.log(km);
+        $scope.playlist.distance = parseFloat(km);
 
         var mapOptions = {
             center: latLng,
@@ -104,6 +123,15 @@ angular.module('starter.controllers', ['starter.services'])
     }, function(error){
         console.log("Could not get location");
     });
+
+    $scope.getRatingArray = function(playlist){
+        var range = [];
+        for(var i=0;i<playlist.rating;i++) {
+            range.push(i);
+        }
+        playlist.range = range;
+        return playlist.range;
+    };
 
 })
 

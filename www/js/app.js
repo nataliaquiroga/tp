@@ -6,7 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $state, $rootScope) { //$state y $rootScope son para la funcion que agrega una clase al nav bar
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -19,7 +19,18 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
+    //Función para el nav bar
+    $rootScope.$on('$stateChangeSuccess', function (evt, toState) {
+        console.log('stateChangeSuccess');
+        if (toState.changeColor) {
+            $rootScope.changeColor = true;
+        } else {
+            $rootScope.changeColor = false;
+        }
+
   });
+})
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -76,7 +87,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
         templateUrl: 'templates/playlist.html',
         controller: 'PlaylistCtrl'
       }
-    }
+    },
+    changeColor: true
   })
 
     .state('app.map', {
@@ -87,4 +99,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/playlists');
+
 });
