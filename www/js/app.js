@@ -52,14 +52,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova'])
     }
   })
 
-  .state('app.browse', {
-      url: '/browse',
+  .state('app.browsebar', {
+      url: '/browsebar',
       views: {
         'menuContent': {
-          templateUrl: 'templates/browse.html'
+          templateUrl: 'templates/browsebar.html',
+          controller: 'SearchCtrl'
+
         }
       }
     })
+
+    .state('app.browsecafe', {
+        url: '/browsecafe',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/browsecafe.html'
+          }
+        }
+      })
+      .state('app.browserestaurant', {
+          url: '/browserestaurant',
+          views: {
+            'menuContent': {
+              templateUrl: 'templates/browserestaurant.html'
+            }
+          }
+        })
+
     .state('app.playlists', {
       url: '/playlists',
       views: {

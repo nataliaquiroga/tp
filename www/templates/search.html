@@ -1,44 +1,48 @@
 <ion-view view-title="Búsqueda">
+	<!-- JS Libraries -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js" type="text/javascript"></script>
+		<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.10.0.js" type="text/javascript"></script>
+<!-- Angular Scripts -->
+		<script src="script.js" type="text/javascript"></script>
+<!-- Bootstrap -->
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
+
   <ion-content>
-    <!-- Primer combo -->
-    <div class="list">
-      <label class="item item-input item-select">
-        <div class="input-label">
-          ¿Que queres hacer?
-        </div>
-        <select>
-          <option> Cena </option>
-          <option selected>Bar </option>
-          <option> Delivery </option>
-        </select>
-      </label>
-    <!-- </div> -->
-    <!-- Segundo combo -->
-    <!-- <div class="list"> -->
-      <label class="item item-input item-select">
-        <div class="input-label">
-          ¿Con Quien?
-        </div>
-        <select>
-          <option> Amigos </option>
-          <option selected>Pareja </option>
-          <option> Familia </option>
-        </select>
-      </label>
-    <!-- </div> -->
-    <!-- Tercer combo -->
-    <!-- <div class="list"> -->
-      <label class="item item-input item-select">
-        <div class="input-label">
-          ¿Donde?
-        </div>
-        <select>
-          <option> Mi ubicación Actual </option>
-          <option selected>Capital Federal </option>
-          <option> Buenos Aires </option>
-        </select>
-      </label>
-    </div>
-    <button class="button button-block button-royal" type="button" ng-click=href="#/app/playlists"
-    <div class="title"> Buscar </div>
-  </button>
+		<div ng-controller="SearchCtrl">
+
+			<label>Filtar por nombre:</label> <input type="text" ng-model="search.title" placeholder="Busca por nombre" />
+			<ul>
+				<br />
+				<li ng-repeat="item in filtered = items | filter:search">{{item.title}}</li>
+			</	ul>
+			<br />
+				<div class="list card">
+					<div class="item item-avatar">
+						<img src= 'https://lh3.googleusercontent.com/-sX2ZH3Q6LQI/VedvcNCDSuI/AAAAAAAAMJY/oWp8IBOkNFMHrei4_vDmgP-TizBmj2_Ng/w1896-h1422-no/2015-09-02.jpg'
+						<li><a href="#/app/browsebar">Bar</a></li>
+					</div>
+					<div class="item item-avatar">
+						<img src= 'https://lh3.googleusercontent.com/-sX2ZH3Q6LQI/VedvcNCDSuI/AAAAAAAAMJY/oWp8IBOkNFMHrei4_vDmgP-TizBmj2_Ng/w1896-h1422-no/2015-09-02.jpg'
+						<li><a href="#/app/browsecafe">Cafe</a></li>
+					</div>
+					<div class="item item-avatar">
+						<img src= 'https://lh3.googleusercontent.com/-sX2ZH3Q6LQI/VedvcNCDSuI/AAAAAAAAMJY/oWp8IBOkNFMHrei4_vDmgP-TizBmj2_Ng/w1896-h1422-no/2015-09-02.jpg'
+						<li><a href="#/app/browserestaurant">Restaurant</a></li>
+					</div>
+			</div>
+			<div class="list card">
+			<label>Barrio</label>
+			<ul>
+				<li><a href="" ng-click="search.city='Palermo'">Palermo</a></li>
+				<li><a href="" ng-click="search.city='canitas'">Cañitas</a></li>
+				<li><a href="" ng-click="search.city='belgrano'">Belgrano</a></li>
+				<li><a href="" ng-click="search.city='caballito'">Caballito</a></li>
+				<li><a href="" ng-click="search.city='centro'">Centro</a></li>
+				<li><a href="" ng-click="search.city='retiro'">Retiro</a></li>
+				<li><a href="" ng-click="search.city='barrionorte'">Barrio Norte</a></li>
+			</ul>
+			</div>
+		</div>
+
+	</ion-content>
+</ion-view>

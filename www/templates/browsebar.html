@@ -1,0 +1,32 @@
+<ion-view class="places-list" view-title="Bares">
+  <ion-content>
+      <ion-list>
+      <div ng-controller="SearchCtrl">
+        <div class="card" ng-repeat="item in filtered = items | filter:search">
+          <div class="item item-text-wrap">
+              <div class="left">
+                  <span class="title">{{item.title}}</span>
+                  <br/>
+                  {{item.address}}
+              </div>
+              <div class="right">
+                  <span class="icon ion-star" ng-repeat="i in getRatingArray(item)"></span>
+                  <br/>
+                  {{item.dist}}
+              </div>
+          </div>
+          <a href="" ng-show="search.category='bar'"></a>
+          <div class="item item-image">
+            <img src="{{item.img}}"/>
+          <span class="icon fav-icon ion-android-favorite-outline" ng-class="{hide:playlist.fav==0,show:playlist.fav==1}"></span>
+          </div>
+            <div class="item item-divider">
+                <a class="button button-light icon ion-ios-location">Ver Mapa</a>
+                <a class="button button-light icon ion-ios-telephone" href="tel: {{itemlist.phone}}">Llamar</a>
+                <a class="button button-light icon ion-plus" href="#/app/playlists/{{itemlist.id}}">Ver más</a>
+            </div>
+        </div>
+        </div>
+</ion-list>
+</ion-content>
+</ion-view>

@@ -1,0 +1,14 @@
+<ion-view view-title="Cafes">
+  <ion-content>
+    <div ng-controller="SearchCtrl">
+      <div class="item item-image">
+          <img src="{{playlist.img}}"/>
+          <span class="icon fav-icon ion-android-favorite-outline" ng-class="{hide:playlist.fav==0,show:playlist.fav==1}"></span>
+			<ul>
+        <li><a href="" ng-show="search.category='cafe'"></a></li>
+				<li ng-repeat="item in filtered = items | filter:search | startFrom:(currentPage-1)*entryLimit | limitTo:entryLimit">{{item.title}} {{item.address}} </li>
+			</ul>
+			</div>
+      </div>
+  </ion-content>
+</ion-view>
